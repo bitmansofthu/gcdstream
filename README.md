@@ -1,2 +1,2 @@
 # GCDStream
-GCD based wrapper for NSInputStream and NSOutputStream
+GCD based wrapper for NSInputStream and NSOutputStream written in Objective-C.
