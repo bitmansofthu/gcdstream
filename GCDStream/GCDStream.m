@@ -72,13 +72,15 @@
 }
 
 - (void)writeData:(NSData*)data {
-    dispatch_async(writeQueue, ^{
-        [writeData appendData:data];
-        
-        if ([self.outStream hasSpaceAvailable]) {
-            [self writeToOutStream];
-        }
-    });
+    if (self.outStream) {
+        dispatch_async(writeQueue, ^{
+            [writeData appendData:data];
+            
+            if ([self.outStream hasSpaceAvailable]) {
+                [self writeToOutStream];
+            }
+        });
+    }
 }
 
 - (void)close {
