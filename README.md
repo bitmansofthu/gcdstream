@@ -9,6 +9,12 @@ Typically useful for socket and [External Accessory](https://developer.apple.com
 Add GCDStream.h and GCDStream.m files to your project.
 
 ```
+#import "GCDStream.h"
+
+@interface ViewController : UIViewController<GCDStreamDelegate>
+```
+
+```
 NSInputStream* inStream = ...
 NSOutputStream* outStream = ...
 
