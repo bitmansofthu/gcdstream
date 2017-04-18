@@ -2,6 +2,8 @@
 GCD based wrapper for NSInputStream and NSOutputStream written in Objective-C.
 The NSStreamDelegate for the provided NSStreams are scheduled on the main runloop, however read/write actions are handled on separate *GCD queues*.
 
+Typically useful for socket and [External Accessory](https://developer.apple.com/reference/externalaccessory/eaaccessory) communications.
+
 ## Usage
 
 ```
