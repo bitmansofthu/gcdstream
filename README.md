@@ -6,6 +6,8 @@ Typically useful for socket and [External Accessory](https://developer.apple.com
 
 ## Usage
 
+Add GCDStream.h and GCDStream.m files to your project.
+
 ```
 NSInputStream* inStream = ...
 NSOutputStream* outStream = ...
