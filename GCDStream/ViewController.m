@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UILabel *receivedBytesLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *testImageView;
+
 @end
 
 @implementation ViewController {
@@ -62,6 +64,17 @@
 
 - (void)gcdStream:(GCDStream *)gcdstream streamEndEncountered:(NSStream *)stream {
     [self addLog:@"Stream closed"];
+    
+    if (gcdStream.inStream == stream) {
+        [gcdStream close];
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+        NSString *cacheDirectory = [paths objectAtIndex:0];
+        
+        NSData* data = [NSData dataWithContentsOfFile:[cacheDirectory stringByAppendingPathComponent:@"testimage.jpg"]];
+        
+        self.testImageView.image = [UIImage imageWithData:data];
+    }
 }
 
 @end

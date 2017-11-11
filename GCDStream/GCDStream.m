@@ -58,6 +58,8 @@
 }
 
 - (void)open {
+    byteIndex = 0;
+    
     if (self.inStream) {
         [self.inStream setDelegate:self];
         [self.inStream scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
@@ -160,7 +162,7 @@
     }
 }
 
-- (void) closeStream:(NSStream*)stream {
+- (void)closeStream:(NSStream*)stream {
     [stream close];
     [stream removeFromRunLoop:[NSRunLoop currentRunLoop]
                        forMode:NSDefaultRunLoopMode];
@@ -172,7 +174,7 @@
 }
 
 - (void) writeToOutStream {
-    if (writeData.length > 0) {
+    if (byteIndex < writeData.length) {
         uint8_t *readBytes = (uint8_t *)[writeData mutableBytes];
         readBytes += byteIndex; // instance variable to move pointer
         long data_len = [writeData length];
